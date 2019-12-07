@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Screenshot (83).png" type="Texture" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 630.881, 576.805 )
+scale = Vector2( 7.16133, 19.3677 )
+zoom = Vector2( 2, 2 )
+
+[node name="Screenshot (83)" type="Sprite" parent="."]
+position = Vector2( -4.34644, -0.278259 )
+texture = ExtResource( 1 )
