@@ -31,4 +31,4 @@ func load_page(name):
 	#query_thread.wait_to_finish()
 
 func _ready():
-	load_page("United_States_of_America")
+	load_page("Doge_(meme)")
