@@ -3,6 +3,8 @@
 [ext_resource path="res://addons/godot-oculus/scenes/materials/left_controller.tres" type="Material" id=1]
 [ext_resource path="res://addons/godot-oculus/scenes/materials/right_controller.tres" type="Material" id=2]
 
+
+
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 0.001, 0.001 )
 
