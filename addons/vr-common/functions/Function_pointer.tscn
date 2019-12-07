@@ -60,7 +60,12 @@ func _process(delta):
 		else:
 			if new_target.has_method(\"_on_pointer_moved\"):
 				new_target._on_pointer_moved(new_at, last_collided_at)
-		
+        
+		var diff = new_at.y - last_collided_at.y
+        
+		var sprite = get_owner().get_node(\"Viewport/Node2D\").get_node(\"Sprite\")
+		var curloc = sprite.get_offset()
+		sprite.set_offset(Vector2(0, curloc.y + diff))
 		last_collided_at = new_at
 
 "
