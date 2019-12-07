@@ -7,6 +7,8 @@ const puppeteer = require("puppeteer");
 
     console.log("Started browser.");
 
+    page.setJavaScriptEnabled(false);
+
     await page.goto(url);
 
     console.log("Fetched page.");
@@ -19,11 +21,11 @@ const puppeteer = require("puppeteer");
 
     console.log("Set viewport.");
 
-    let handles = await Promise.all(["#mw-page-base", "#frb-inline", "#mw-head-base", "#mw-data-after-content", "#mw-navigation", "#footer", "#mwe-popups-svg", "#toc", "#siteNote"].map(async sel => await page.$(sel)));
-    await Promise.all(handles.map(async handle => {
+    await Promise.all(["#mw-page-base", "#frb-inline", "#mw-head-base", "#mw-data-after-content", "#mw-navigation", "#footer", "#mwe-popups-svg", "#toc", "#siteNote"].map(async sel => {
+        let handle = await page.$(sel);
         if (handle) {
             await handle.evaluate(el => el.remove());
-            console.log("Removed element.")
+            console.log("Removed " + sel)
         }
     }));
 
