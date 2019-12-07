@@ -1,4 +1,6 @@
 const puppeteer = require("puppeteer");
+const fs = require("fs");
+const path = require("path");
 
 (async () => {
     const browser = await puppeteer.launch();
@@ -49,6 +51,24 @@ const puppeteer = require("puppeteer");
     console.log("Set viewport again.");
 
     await page.screenshot({path: "output.png"});
+
+    let links = await Promise.all((await page.$$('a[href^="/wiki/"]')).map(handle => handle.evaluate(a =>
+        ({name: decodeURIComponent(a.getAttribute("href").slice(6).replace(/_/g, " ")), y: a.getBoundingClientRect().top}))));
+    
+    let filtered = links.filter(s => !s.name.includes(":")).filter(s => !s.name.includes("(disambiguation")).filter(s => s.y > 0);
+
+    let final = [];
+    let seen = {};
+    filtered.forEach(link => {
+        if (!seen[link.name]) {
+            seen[link.name] = true;
+            final.push(link);
+        }
+    });
+
+    fs.writeFileSync(path.join(__dirname, "output.json"), JSON.stringify(final.sort((a, b) => a.y - b.y)), "utf8");
+    
+    console.log("Scraped links.")
 
     console.log("Took screenshot.")
   
