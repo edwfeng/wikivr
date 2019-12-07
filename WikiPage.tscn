@@ -5,17 +5,5 @@
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource( 1 )
 
-[node name="TextEdit" type="TextEdit" parent="."]
-margin_right = 295.0
-margin_bottom = 22.0
-
-[node name="Button" type="Button" parent="."]
-margin_left = 296.892
-margin_top = 0.402283
-margin_right = 308.892
-margin_bottom = 20.4023
-
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, 30 )
 centered = false
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

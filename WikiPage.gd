@@ -2,10 +2,7 @@ extends CanvasLayer
 
 var query_thread
 
-func _query(null_arg):
-    print(null_arg)
-    var input = $TextEdit.get_text().replace(" ", "%20")
-    print(input)
+func _query(input):
     if input.length() != 0:
         var url = str("https://en.wikipedia.org/wiki/" + input)
         print(url)
@@ -27,9 +24,11 @@ func _query(null_arg):
         $Sprite.texture = texture
         print(3)
 
-func _on_Button_pressed():
-    if $TextEdit.get_text().length() != 0:
-        #self._query(null)
-        query_thread = Thread.new()
-        query_thread.start(self, "_query")
-        #query_thread.wait_to_finish()
+func load_page(name):
+	#self._query(null)
+	query_thread = Thread.new()
+	query_thread.start(self, "_query", name)
+	#query_thread.wait_to_finish()
+
+func _ready():
+	load_page("United States of America")
