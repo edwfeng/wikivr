@@ -83,3 +83,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/linux,godot,macos,windows
+
+output.png
+output.png.import
