@@ -4,13 +4,16 @@ func _ready():
     pass
 
 func _on_Button_pressed():
+    print(17359)
     var input = $TextEdit.get_text().replace(" ", "%20")
+    print(input)
     if input.length() != 0:
-        var query = str("https://en.wikipedia.org/w/api.php?format=json&action=parse&section=0&page=" + input)
+        var url = str("https://en.wikipedia.org/wiki/" + input)
+        print(url)
+        var res = OS.get_screen_size().x
+        print(res)
+        print(1)
         # print(query)
-        $HTTPRequest.request(query)
-
-func _on_HTTPRequest_request_completed(result, response_code, headers, body):
-    var json = JSON.parse(body.get_string_from_utf8())
-    # print(json.result.parse.text["*"])
-    $RichTextLabel.add_text(json.result.parse.text["*"])
+        OS.execute("node", ["wikipage.js", url, res], true)
+        print(2)
+        $Sprite.texture = load("res://output.png")

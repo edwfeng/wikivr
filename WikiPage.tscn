@@ -15,12 +15,7 @@ margin_top = 0.402283
 margin_right = 308.892
 margin_bottom = 20.4023
 
-[node name="HTTPRequest" type="HTTPRequest" parent="."]
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = -0.796204
-margin_top = 32.7836
-margin_right = 1018.2
-margin_bottom = 610.784
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 30 )
+centered = false
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
-[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
