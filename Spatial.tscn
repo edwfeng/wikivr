@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Spatial.gd" type="Script" id=1]
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.62037, 0 )
+
+[node name="ARVROrigin" type="ARVROrigin" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.91855, 3.88284 )
+
+[node name="ARVRAnchor" type="ARVRAnchor" parent="ARVROrigin"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.82896, 3.67121 )
+
+[node name="ARVRCamera" type="ARVRCamera" parent="ARVROrigin"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.82896, 3.67121 )

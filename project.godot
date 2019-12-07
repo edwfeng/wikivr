@@ -16,7 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="New Game Project"
+run/main_scene="res://Spatial.tscn"
 config/icon="res://icon.png"
+
+[gdnative]
+
+singletons=[ "res://addons/godot-oculus/godot_oculus.gdnlib" ]
 
 [rendering]
 
