@@ -9,21 +9,23 @@ func _query(null_arg):
     if input.length() != 0:
         var url = str("https://en.wikipedia.org/wiki/" + input)
         print(url)
-        var res = OS.get_screen_size().x
+        var res = get_viewport().x
         print(res)
         var output = []
-        #OS.execute("node", ["wikipage.js", url, res], true, output)
+        OS.execute("node", ["wikipage.js", url, res], true, output)
         
         
         print(output)
         print(2)
         
         # $Sprite.texture = load("output.png")
-        var im = Image.new().load("output.png")
+        var im = Image.new()
+        im.load("output.png")
+        # im.resize(res, im.get_height() * (res/im.get_width()))
         print("a")
         var texture = ImageTexture.new()
         print("b")
-        texture.create_from_image(im, Texture.FLAGS_DEFAULT)
+        texture.create_from_image(im)
         print("c")
         $Sprite.texture = texture
         print(3)
