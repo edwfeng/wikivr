@@ -31,8 +31,8 @@ func _query(null_arg):
         print(3)
 
 func _on_Button_pressed():
-	if $TextEdit.get_text().length() != 0:
-		self._query(null)
+    if $TextEdit.get_text().length() != 0:
+        self._query(null)
         #query_thread = Thread.new()
         #query_thread.start(self, "_query")
         #query_thread.wait_to_finish()
