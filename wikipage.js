@@ -19,7 +19,7 @@ const puppeteer = require("puppeteer");
 
     console.log("Set viewport.");
 
-    let handles = await Promise.all(["#mw-page-base", "#frb-inline", "#mw-head-base", "#mw-data-after-content", "#mw-navigation", "#footer", "#mwe-popups-svg", "#toc", ".frb"].map(async sel => await page.$(sel)));
+    let handles = await Promise.all(["#mw-page-base", "#frb-inline", "#mw-head-base", "#mw-data-after-content", "#mw-navigation", "#footer", "#mwe-popups-svg", "#toc", "#siteNote"].map(async sel => await page.$(sel)));
     await Promise.all(handles.map(async handle => {
         if (handle) {
             await handle.evaluate(el => el.remove());
@@ -40,7 +40,7 @@ const puppeteer = require("puppeteer");
     console.log("Determined height.");
 
     await page.setViewport({
-        height,
+        height: Math.min(height, 16384),
         width
     });
     
