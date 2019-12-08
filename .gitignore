@@ -1,3 +1,5 @@
+node_modules/
+
 # Created by https://www.gitignore.io/api/linux,godot,macos,windows
 # Edit at https://www.gitignore.io/?templates=linux,godot,macos,windows
 
@@ -81,3 +83,7 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/linux,godot,macos,windows
+
+output.png
+output.png.import
+output.json

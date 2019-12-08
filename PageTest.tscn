@@ -1,0 +1,114 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://PageTest.gd" type="Script" id=1]
+[ext_resource path="res://Page.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/godot-oculus/scenes/oculus_left_touch_controller.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/vr-common/functions/Function_Teleport.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/godot-oculus/scenes/oculus_right_touch_controller.tscn" type="PackedScene" id=5]
+[ext_resource path="res://addons/vr-common/functions/Function_pointer.tscn" type="PackedScene" id=6]
+
+[sub_resource type="PlaneMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 1, 1, 1, 0 )
+
+[sub_resource type="PlaneShape" id=3]
+
+[sub_resource type="SpatialMaterial" id=4]
+
+[sub_resource type="ProceduralSky" id=5]
+
+[sub_resource type="Environment" id=6]
+background_mode = 1
+background_sky = SubResource( 5 )
+ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 0.5
+
+[sub_resource type="PlaneMesh" id=7]
+
+[sub_resource type="SpatialMaterial" id=8]
+flags_transparent = true
+params_blend_mode = 1
+albedo_color = Color( 0.0588235, 0.160784, 0.223529, 1 )
+proximity_fade_enable = true
+proximity_fade_distance = 1.0
+
+[sub_resource type="PlaneShape" id=9]
+
+[sub_resource type="SpatialMaterial" id=10]
+flags_transparent = true
+albedo_color = Color( 0.0862745, 0.0627451, 0.0627451, 1 )
+emission_enabled = true
+emission = Color( 0.913725, 0.913725, 0.913725, 1 )
+emission_energy = 0.25
+emission_operator = 0
+emission_on_uv2 = false
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 1000, 1000 )
+usage = 0
+render_target_v_flip = true
+
+[node name="Node2D" parent="Viewport" instance=ExtResource( 2 )]
+
+[node name="Plane" type="MeshInstance" parent="."]
+transform = Transform( 2, 0, 0, 0, -4.37114e-008, -2, 0, 1, -8.74228e-008, 0, 3, -4.5 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="StaticBody" type="StaticBody" parent="Plane"]
+transform = Transform( 4.85313, 0, 0, 0, 1, 3.30487e-007, 0, 8.26217e-008, 4.78033, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Plane/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 7.10543e-015, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="Plane2" type="MeshInstance" parent="."]
+transform = Transform( 2, 0, 0, 0, 1.19249e-008, 2, 0, -1, 2.38498e-008, 0, 3, -4.5 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 4 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 6 )
+
+[node name="ARVROrigin" type="ARVROrigin" parent="."]
+
+[node name="ARVRCamera" type="ARVRCamera" parent="ARVROrigin"]
+transform = Transform( -1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 1.19661, 0 )
+current = true
+fov = 63.5721
+
+[node name="oculus_left_touch_controller" parent="ARVROrigin" instance=ExtResource( 3 )]
+
+[node name="Function_Teleport" parent="ARVROrigin/oculus_left_touch_controller" instance=ExtResource( 4 )]
+camera = NodePath("../../ARVRCamera")
+
+[node name="oculus_right_touch_controller" parent="ARVROrigin" instance=ExtResource( 5 )]
+
+[node name="Function_pointer" parent="ARVROrigin/oculus_right_touch_controller" instance=ExtResource( 6 )]
+
+[node name="Floor MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 47.4439, 0, 0, 0, 4.77548, 0, 0, 0, 47.4439, 0.101774, 0.0400343, -0.132671 )
+mesh = SubResource( 7 )
+material/0 = SubResource( 8 )
+
+[node name="Floor StaticBody" type="StaticBody" parent="."]
+transform = Transform( 0.973737, 0, 0, 0, 0.973737, 0, 0, 0, 0.973737, 0, 0, 0 )
+
+[node name="Floor CollisionShape" type="CollisionShape" parent="Floor StaticBody"]
+transform = Transform( 5, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.32273, 1.61661 )
+light_energy = 4.64
+
+[node name="CSGSphere" type="CSGSphere" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.042, 1.23519, -3.07142 )
+radius = 0.75
+radial_segments = 14
+rings = 18
+material = SubResource( 10 )
