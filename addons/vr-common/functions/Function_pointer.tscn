@@ -21,6 +21,9 @@ func _on_button_pressed(p_button):
 			target = $Laser/RayCast.get_collider()
 			last_collided_at = $Laser/RayCast.get_collision_point()
 			print(\"Button pressed on \" + target.get_name() + \" at \" + str(last_collided_at))
+			
+			get_owner().thing(target)
+			
 			if target.has_method(\"_on_pointer_pressed\"):
 				target._on_pointer_pressed(last_collided_at)
 
@@ -67,7 +70,10 @@ func _process(delta):
         
 		var sprite = get_owner().get_node(\"Viewport/Node2D\").get_node(\"Sprite\")
 		var curloc = sprite.get_offset()
-		sprite.set_offset(Vector2(0, curloc.y - diff * 10))
+		sprite.set_offset(Vector2(0, curloc.y - diff * 75))
+		if sprite.get_texture():
+			if abs(sprite.get_offset().y) > sprite.get_texture().get_size().y:
+				sprite.set_offset(Vector2(0,0))
 		last_collided_at = new_at
 
 "

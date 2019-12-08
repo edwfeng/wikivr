@@ -3,8 +3,6 @@
 [ext_resource path="res://addons/godot-oculus/scenes/oculus_cv1_controller_right/oculus_cv1_controller_right.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://addons/godot-oculus/scenes/materials/right_controller.tres" type="Material" id=2]
 
-
-
 [sub_resource type="GDScript" id=1]
 script/source = "extends ARVRController
 
@@ -41,4 +39,3 @@ script = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0.01, 0.04, -0.03 )
 mesh = ExtResource( 1 )
 material/0 = ExtResource( 2 )
-
